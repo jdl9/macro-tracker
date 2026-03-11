@@ -1,0 +1,30 @@
+// This is your Prisma schema file
+// V1: SQLite — swap provider to "postgresql" and update DATABASE_URL for production
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Entry {
+  id        String   @id @default(cuid())
+  name      String
+  protein   Float
+  carbs     Float
+  fats      Float
+  calories  Float    // computed on creation: protein*4 + carbs*4 + fats*9
+  date      String   // stored as YYYY-MM-DD for easy daily grouping
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DailyGoal {
+  id      String @id @default(cuid())
+  protein Float  @default(150)
+  carbs   Float  @default(200)
+  fats    Float  @default(65)
+}
