@@ -4,9 +4,9 @@ import { prisma } from '@/lib/prisma'
 // DELETE /api/entries/[id]
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params
+  const { id } = await params
 
   try {
     await prisma.entry.delete({ where: { id } })
