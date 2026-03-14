@@ -36,10 +36,9 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Copy Prisma schema + migrations for runtime
+# Copy Prisma schema + node_modules for runtime (prisma CLI needs its full dep tree)
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/node_modules ./node_modules
 
 # SQLite DB will be stored here (mount a volume to persist)
 RUN mkdir -p /app/prisma/data && chown nextjs:nodejs /app/prisma/data
@@ -51,4 +50,4 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # Run DB push then start server
-CMD ["sh", "-c", "npx prisma db push && node server.js"]
+CMD ["sh", "-c", "node_modules/.bin/prisma db push --skip-generate && node server.js"]

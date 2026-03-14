@@ -4,10 +4,10 @@
 A mobile-first Next.js app for tracking daily nutritional macros (protein, carbs, fats).
 
 ## Stack
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **ORM**: Prisma
+- **ORM**: Prisma 6
 - **Database**: SQLite (V1) → PostgreSQL (V2+)
 - **Containerization**: Docker / Docker Compose
 
