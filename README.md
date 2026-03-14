@@ -63,8 +63,8 @@ That's it — no other code changes needed.
 ---
 
 ## Tech Stack
-- [Next.js 14](https://nextjs.org/) (App Router)
-- [Prisma](https://prisma.io/) ORM
+- [Next.js 16](https://nextjs.org/) (App Router)
+- [Prisma 6](https://prisma.io/) ORM
 - [SQLite](https://sqlite.org/) → PostgreSQL path
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Docker](https://docker.com/)
